@@ -10,13 +10,14 @@
     "dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3333 && npm run client:dev\"",
     "seed": "cd ./server && npm run seed",
     "start": "node ./server/dist/server.js",
-    "install:all": "npm i && cd .server && npm i && cd ../client && npm i"
+    "install:all": "npm i && cd ./server && npm i && cd ../client && npm i"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "concurrently": "^9.1.0"
+    "concurrently": "^9.1.0",
+    "wait-on": "^8.0.1"
   }
 }
