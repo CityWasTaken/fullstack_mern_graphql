@@ -27,16 +27,27 @@ type User {
 type Response {
     user: User
     errors: [String]
+    message: String
 }
 
 type Query {
-    test: String
+    # Auth Queries
+    getUser: Response
+    # Pet Queries
+    getAllPosts: [Post]
+    getUserPets: [Pet]
+    getPostForPet(pet_id: ID): [Post]
 },
 
 
 type Mutation {
+    # Auth Resolvers
     registerUser(username: String, email: String, password: String): Response
     loginUser(email: String, password: String): Response
+    logoutUser: Response
+    # Pet Resolvers
+    createPet(name: String, type: String, age: Int): Response
+    createPost(title: String, body: String, pet: ID): Response
 }
 
 `;

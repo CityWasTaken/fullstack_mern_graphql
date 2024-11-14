@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 
 export default interface Context {
-    req: Request;
+    req: Request | any;
     res: Response;
 }
