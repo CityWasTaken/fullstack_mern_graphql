@@ -6,6 +6,7 @@ const userSchema = new Schema({
     username: {
         type: String,
         unique: true,
+        required: true,
         minLength: [2, 'Your username must have at least 2 characters in length']
     },
     email: {
@@ -13,11 +14,13 @@ const userSchema = new Schema({
         // The unique rule only works when the first collection is created
         // You CANNOT create a custom error message with the array syntax on the -unique- rule
         unique: true,
+        required: true,
         // Ensure the value is a valid email string
         match: [/.+@.+\..+/, "You must enter a valid email!"]
     },
     password: {
         type: String,
+        required: true,
         minLength: [6, 'Your password must contain at least 6 characters']
     },
     // The notes property is going to be an array of note ids

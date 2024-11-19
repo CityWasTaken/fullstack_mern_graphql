@@ -3,6 +3,7 @@ const { Schema, model } = mongoose;
 const petSchema = new Schema({
     name: {
         type: String,
+        required: [true, 'You must provide the pet\'s name'],
         minLength: [2, 'Your pet name must be at least 2 characters in lenth']
     },
     type: {
@@ -11,6 +12,7 @@ const petSchema = new Schema({
     },
     age: {
         type: Number,
+        min: [1, 'You must enter an age greater than 0!'],
         required: [true, 'You must provide the animal\'s age']
     },
     owner: {

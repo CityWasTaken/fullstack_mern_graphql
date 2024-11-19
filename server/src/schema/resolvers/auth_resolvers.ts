@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { Types } from 'mongoose';
+import { GraphQLError } from 'graphql';
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ const auth_resolvers = {
     Query: {
         // Get user
         async getUser(_: any, __: any, context: Context) {
+                        
             if (!context.req.user) {
                 return {
                     user: null
@@ -40,6 +42,8 @@ const auth_resolvers = {
     Mutation: {
         // Register a user
         async registerUser(_: any, args: { username: string, email: string, password: string }, context: Context) {
+            console.log(args);
+            
             try {
                 const user = await User.create(args);
 
@@ -58,14 +62,13 @@ const auth_resolvers = {
 
                 return {
                     user: user
-                };
-            } catch (error: any) {
-                return errorHandler(error);
-                
-            }
-
-
-        },
+                  };
+                } catch (error: any) {
+                  const errorMessage = errorHandler(error);
+          
+                  throw new GraphQLError(errorMessage);
+                }
+              },
 
         // Log a user in
         async loginUser(_: any, args: { email: string, password: string }, context: Context) {
@@ -74,17 +77,13 @@ const auth_resolvers = {
             });
 
             if (!user) {
-                return {
-                    errors: ["No user found with that email address"]
-                }
+                throw new GraphQLError('No user found with that email!')
             }
 
             const valid_pass = await user.validatePassword(args.password);
 
-            if (valid_pass) {
-                return {
-                    errors: ["Password is invalid"]
-                }
+            if (!valid_pass) {
+                throw new GraphQLError('Password is invalid')
             }
 
             const token = createToken(user._id!);

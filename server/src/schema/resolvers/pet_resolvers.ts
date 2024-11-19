@@ -5,6 +5,7 @@ import Post from '../../models/Post.js';
 import Context from '../../interfaces/Context';
 
 import { errorHandler } from '../helpers/index.js';
+import { GraphQLError } from 'graphql';
 
 type PetArguments = {
     name?: string;
@@ -76,10 +77,13 @@ const pet_resolvers = {
                 
 
             } catch (error) {
-                return errorHandler(error);
+                const errorMessage = errorHandler(error);
+
+                throw new GraphQLError(errorMessage);  
             }
         },
 
+        // Create a post
         async createPost(_: any, args: PostArguments, context: Context) {
             if (!context.req.user) {
                 return {
@@ -105,7 +109,9 @@ const pet_resolvers = {
                     message: 'Post was successfully created!'
                 }
             } catch (error) {
-                return errorHandler(error);
+                const errorMessage = errorHandler(error);
+
+                throw new GraphQLError(errorMessage);          
             }
         }
 
