@@ -1,9 +1,7 @@
-import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { Types } from 'mongoose';
 import { GraphQLError } from 'graphql';
 
-dotenv.config();
 
 import User from '../../models/User.js';
 import Context from '../../interfaces/Context';
