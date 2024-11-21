@@ -61,3 +61,29 @@ nav a:hover:not(.navbar-brand) {
 .pet-output {
     grid-template-columns: repeat(3, 1fr);
 }
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+    .hero-text {
+        margin-top: 25px !important;
+    }
+}
+
+@media (max-width: 490px) {
+    .nav-wrap {
+        flex-direction: column !important;
+    }
+
+    .navbar-nav.ms-auto {
+        margin-left: 0 !important;
+    }
+
+    main form {
+        width: 450px !important;
+    }
+
+    .pet-output {
+        grid-template-columns: 1fr;
+    }
+}

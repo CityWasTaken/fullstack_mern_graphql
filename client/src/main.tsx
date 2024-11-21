@@ -24,6 +24,6 @@ createRoot(document.getElementById('root')!).render(
           <App />
         </BrowserRouter>
       </StoreProvider>
-    </ApolloProvider>,
-  </StrictMode>,
+    </ApolloProvider>
+  </StrictMode>
 )
