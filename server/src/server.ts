@@ -12,7 +12,6 @@ import connection from './config/connection.js';
 import typeDefs from './schema/typeDefs.js';
 import resolvers from './schema/resolvers.js';
 import User from './models/User.js';
-import { configDotenv } from 'dotenv';
 
 const { verify } = jwt;
 
