@@ -33,6 +33,10 @@ function ViewPostModal({
                     <Modal.Title>{selectedPet?.name}'s Posts</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {postData && !postData.getPostForPet.length && (
+                        <p>Uh oh! You dont have any powsts right meow</p>
+                    )}
+
                     {postData && postData.getPostForPet.map((post: Post) => (
                         <article key={post._id} className="mb-2 border-bottom">
                             <h5>{post.title}</h5>
