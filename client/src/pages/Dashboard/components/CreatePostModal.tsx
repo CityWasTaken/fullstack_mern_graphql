@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import { CREATE_POST } from "../../../graphql/mutations";
 
 import { Pet } from "../../../interfaces";
-import { GET_PET_POSTS } from "../../../graphql/queries";
+import { GET_ALL_POSTS, GET_PET_POSTS } from "../../../graphql/queries";
 
 const initialFormData = {
     title: '',
@@ -30,7 +30,7 @@ function CreatePostModal({
             variables: {
                 petId: selectedPet?._id
             }
-        }]
+        }, {query: GET_ALL_POSTS}]
     });
 
     const handleModalClose = () => {
