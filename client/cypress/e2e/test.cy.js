@@ -112,6 +112,10 @@ describe('Site Tests', () => {
     cy.get('article').contains(petName).get('Button').contains('View Post').click();
 
     cy.get('.modal-body').contains(postTitle)
+
+    cy.visit('/');
+
+    cy.get('main').contains(postTitle);
   });
 
 });
