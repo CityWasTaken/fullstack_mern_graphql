@@ -16,7 +16,7 @@
     "install": "cd ./server && npm i && cd ../client && npm i",
     "test:dev": "concurrently \"npm run dev\" \"wait-on tcp:5173 && cd ./client && npm run cypress:open\"",
     "stop": "kill $(lsof -t -i:10000)",
-    "test": "concurrently \"npm start\" \"wait-on tcp:10000 && cd ./client && npm run cypress:run && npm run stop\"",
+    "test": "concurrently \"npm start\" \"wait-on tcp:10000 && cd ./client && npm run cypress:run && cd ../ && npm run stop\"",
     "prep": "npm run client:build && npm run server:build"
   },
   "keywords": [],
