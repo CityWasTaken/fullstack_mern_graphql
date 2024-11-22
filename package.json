@@ -15,8 +15,7 @@
     "render:install": "cd ./server && npm i",
     "install": "cd ./server && npm i && cd ../client && npm i",
     "test:dev": "concurrently \"npm run dev\" \"wait-on tcp:5173 && cd ./client && npm run cypress:open\"",
-    "stop": "kill $(lsof -t -i:10000)",
-    "test": "concurrently \"npm start\" \"wait-on tcp:10000 && cd ./client && npm run cypress:run && cd ../ && npm stop\"",
+    "test": "concurrently \"npm start\" \"wait-on tcp:10000 && cd ./client && npm run cypress:run\"",
     "prep": "npm run client:build && npm run server:build"
   },
   "keywords": [],
@@ -25,6 +24,7 @@
   "description": "",
   "devDependencies": {
     "concurrently": "^9.1.0",
+    "fkill-cli": "^8.0.0",
     "wait-on": "^8.0.1"
   }
 }
