@@ -26,6 +26,8 @@ const petSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: 'Post'
     }]
+}, {
+    collection: 'pet_app_posts'
 });
 
 const Pet = model('Pet', petSchema);
