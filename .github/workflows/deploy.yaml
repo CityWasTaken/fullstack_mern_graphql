@@ -40,9 +40,12 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Merge pull request
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
-        git checkout main
-        git merge ${{ github.event.pull_request.head.ref }}
-        git push origin main
+      uses: actions/github-script@v6
+      with:
+        script: |
+            github.rest.pulls.merge({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.payload.pull_request.number,
+            merge_method: 'merge'
+              })
