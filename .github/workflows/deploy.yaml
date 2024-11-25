@@ -54,7 +54,7 @@ jobs:
     needs: merge
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Deploy to Render
